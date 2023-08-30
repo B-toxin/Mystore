@@ -1,75 +1,38 @@
-/* Reset default margin and padding */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* styles.css */
+/* Add your custom styling here */
 
-/* Basic styling for the body */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-/* Styling for the payment form container */
-.payment-form {
-    max-width: 500px;
+.content-section {
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #ADD8E6;
     margin-top: 150px;
 }
 
-/* Styling for form headings */
-h1, h2 {
-    margin-bottom: 10px;
-}
-
-/* Styling for form sections */
-.form-section {
+.form-group {
     margin-bottom: 20px;
 }
 
-/* Styling for labels */
-label {
-    display: block;
+.form-control-label {
     font-weight: bold;
-    margin-bottom: 5px;
 }
 
-/* Styling for input fields and textareas */
-input[type="email"],
-textarea {
+.form-control {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
-/* Styling for the items in cart section */
-.form-section ul {
-    list-style: none;
-    padding-left: 0;
+.invalid-feedback {
+    color: red;
 }
 
-.form-section li {
-    margin-bottom: 5px;
-}
-
-/* Styling for the submit button */
-button[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
+.btn {
     padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
+    font-size: 16px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button[type="submit"]:hover {
-    background-color: #0056b3;
 }
