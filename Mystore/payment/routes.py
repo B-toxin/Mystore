@@ -4,7 +4,7 @@ from flask_wtf import CSRFProtect
 from Mystore.payment.forms import PaymentForm
 import time
 
-PAYSTACK_SECRET_KEY = 'sk_test_2dc84a4699b7125060e892773bebfecb47190ee6'
+PAYSTACK_SECRET_KEY = 'sk_live_4471734c006bf88a0ba7494df36e2aaf4d2a60ac'
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'e71121f8359c7c241f56e489f91f32d7'
 csrf = CSRFProtect(app)
@@ -20,7 +20,7 @@ def checkout():
     if form.validate_on_submit():
         amount_in_kobo = int(form.amount.data * 100)  # Convert NGN to kobo
         paystack_data = {
-            'key': 'pk_test_60a3e1f9abc3bbe710308289a796d2e7b6f428ad',
+            'key': 'pk_live_8017ced3f46c94721ee3446267b26043297018ff',
             'email': form.email.data,
             'amount': amount_in_kobo,
             'currency': 'NGN',
