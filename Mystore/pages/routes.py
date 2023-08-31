@@ -1,6 +1,4 @@
-from flask import Blueprint, Flask, render_template, send_file
-import sqlite3
-import os
+from flask import Blueprint, Flask, render_template
 
 app = Flask(__name__)
 
@@ -18,37 +16,21 @@ def menu():
     return render_template('menu.html')
 
 
+@pages.route('/collections')
+def catalog():
+    return render_template('collections.html')
+
+
 @pages.route('/pages/contact')
 def contact():
     return render_template('contact.html')
 
 
-@pages.route('/collections/frontpage')
-def facebook():
-    return render_template('countries_facebook.html')
+@pages.route('/policies/refund-policy')
+def refund():
+    return render_template('refund_policy.html')
 
 
-@pages.route('/collections/instagram-account')
-def instagram():
-    return render_template('instagram_account.html')
-
-
-@pages.route('/download/<file_identifier>')
-def download_file(file_identifier):
-    conn = sqlite3.connect('file_data.db')
-    c = conn.cursor()
-
-    # Query the database for the file by file_identifier
-    c.execute('SELECT filename FROM files WHERE filename LIKE ?', (f'%{file_identifier}%',))
-    result = c.fetchone()
-
-    if result:
-        filename = result[0]
-        file_path = os.path.join('static/files', filename)
-        conn.close()
-
-        # Send the file for download
-        return send_file(file_path, as_attachment=True)
-
-    conn.close()
-    return 'File not found'
+@pages.route('/policies/terms-of-service')
+def terms():
+    return render_template('terms.html')
