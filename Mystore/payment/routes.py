@@ -19,12 +19,17 @@ def checkout():
 
     if form.validate_on_submit():
         amount_in_kobo = int(form.amount.data * 100)  # Convert NGN to kobo
+
+        # Generate a unique reference for this payment
+        unique_reference = f'paystack_{file_identifier}_{int(time.time())}'
+
         paystack_data = {
             'key': 'pk_live_8017ced3f46c94721ee3446267b26043297018ff',
+            # Replace with your actual public key from Paystack
             'email': form.email.data,
             'amount': amount_in_kobo,
             'currency': 'NGN',
-            'ref': f'paystack_example_{int(time.time())}',
+            'ref': unique_reference,  # Use the generated unique reference
             # Add other Paystack parameters as needed
         }
 
@@ -62,6 +67,28 @@ def payment_callback():
         return jsonify({'message': 'Payment verified and successful'})
     else:
         # Payment was not successful, handle accordingly
+        return jsonify({'message': 'Payment verification failed'})
+
+
+@payment.route('/verify-payment', methods=['POST'])
+def verify_payment():
+    data = request.get_json()
+    payment_reference = data['reference']
+
+    verify_url = f'https://api.paystack.co/transaction/verify/{payment_reference}'
+    headers = {
+        'Authorization': f'Bearer {PAYSTACK_SECRET_KEY}'
+    }
+
+    response = requests.get(verify_url, headers=headers)
+    verification_data = response.json()
+
+    if verification_data.get('status') and verification_data.get('data').get('status') == 'success':
+        # Payment verification successful
+        # Update your database or perform other actions here
+        return jsonify({'message': 'Payment verified'})
+    else:
+        # Payment verification failed
         return jsonify({'message': 'Payment verification failed'})
 
 

@@ -19,3 +19,8 @@ def ran_cn_facebook():
 @products.route('/collections/instagram-account/products/copy-of-aged-instagram-without-followers')
 def ig_001():
     return render_template('products/instagram/aged_ig_wf_2016.html')
+
+
+@products.route('/collections/instagram-account/products/aged-instagram-accounts-with-2000-followers')
+def ig_002():
+    return render_template('products/instagram/aged_ig_2000.html')
