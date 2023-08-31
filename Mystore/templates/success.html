@@ -1004,5 +1004,15 @@ for (var attr in meta) {
 </footer>
 
 
-</div></div></body>
+</div></div>
+  <script>
+        // Retrieve the file_identifier from the URL's query parameters
+        const queryParams = new URLSearchParams(window.location.search);
+        const fileIdentifier = queryParams.get('file_identifier');
+
+        // Now use the fileIdentifier to dynamically display content
+        const successContent = document.getElementById('success-content');
+        successContent.innerHTML = `Payment successful for file: ${fileIdentifier}`;
+  </script>
+  </body>
 </html>
