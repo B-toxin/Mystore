@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, Blueprint, redirect, render_template, request, jsonify
+from flask import Flask, Blueprint, redirect, render_template, request, jsonify, session
 from flask_wtf import CSRFProtect
 from Mystore.payment.forms import PaymentForm
 import time
@@ -58,12 +58,18 @@ def payment_callback():
         email = data['data']['customer']['email']
 
         # You can update your database or perform other actions here
+        session['payment_success'] = True
         return jsonify({'message': 'Payment verified and successful'})
     else:
         # Payment was not successful, handle accordingly
         return jsonify({'message': 'Payment verification failed'})
 
 
-@payment.route('/success/<file_identifier>')
-def success(file_identifier):
-    return render_template('success.html', file_identifier=file_identifier)
+@payment.route('/success')
+def success():
+    file_identifier = request.args.get('file_identifier')
+    payment_success = session.get('payment_success')  # Check if payment was successful
+    if payment_success:
+        return render_template('success.html', file_identifier=file_identifier)
+    else:
+        return "Payment not successful."
