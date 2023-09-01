@@ -17,9 +17,9 @@
         <form id="paymentForm" method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Make Payment</legend>
+                <legend class="border-bottom mb-4" style="color: white;">Make Payment</legend>
                 <div class="form-group">
-                    <label class="form-control-label" for="email">Email</label>
+                    <label class="form-control-label" for="email" style="color: white;">Email</label>
                     {{ form.email(class="form-control form-control-lg") }}
                     {% if form.email.errors %}
                         <div class="invalid-feedback">
@@ -30,7 +30,7 @@
                     {% endif %}
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" for="amount">Amount to Pay (in NGN)</label>
+                    <label class="form-control-label" for="amount" style="color: white;">Amount to Pay (in NGN)</label>
                     {{ form.amount(class="form-control form-control-lg") }}
                     {% if form.amount.errors %}
                         <div class="invalid-feedback">
