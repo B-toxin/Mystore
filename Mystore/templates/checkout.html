@@ -4,6 +4,13 @@
     <title>Payment Form</title>
     <!-- Include your CSS stylesheets here -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            background-image: url('{{ url_for('static', filename='image.jpg') }}'); /* Replace with your image file */
+            background-repeat: repeat; /* Make the image repeat */
+            background-size: 300px 300px; /* Adjust the size as needed */
+        }
+    </style>
 </head>
 <body>
     <div class="content-section">
@@ -57,7 +64,6 @@
                     if (response.status === 'success') {
                         // Display success message to the user
                         alert('Payment successful!');
-
                     }
                 }
             });
