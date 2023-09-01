@@ -39,10 +39,10 @@ def checkout():
 
         if payment_data.get('status') and payment_data.get('data').get('status') == 'success':
             # Payment initiation successful, redirect to Paystack payment page
-            return redirect(payment_data.get('data').get('authorization_url'))
+            success_url = f'/success?file_identifier={file_identifier}'
+            return redirect(success_url)
 
         # Payment initiation failed, handle the error accordingly
-
     return render_template('checkout.html', form=form, file_identifier=file_identifier)
 
 
