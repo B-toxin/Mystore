@@ -65,6 +65,7 @@
                         // Display success message to the user
                         alert('Payment successful!');
                         // Redirect to a new URL
+                        const fileIdentifier = '{{ file_identifier }}';
                         window.location.href = '/success?file_identifier=' + file_identifier;
                     }
                 }
