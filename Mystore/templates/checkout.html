@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Form</title>
+    <!-- Include your CSS stylesheets here -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            background-image: url('{{ url_for('static', filename='image.jpg') }}'); /* Replace with your image file */
+            background-repeat: repeat; /* Make the image repeat */
+            background-size: 300px 300px; /* Adjust the size as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="content-section">
+        <form id="paymentForm" method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4" style="color: white;">Make Payment</legend>
+                <div class="form-group">
+                    <label class="form-control-label" for="email" style="color: white;">Email</label>
+                    {{ form.email(class="form-control form-control-lg") }}
+                    {% if form.email.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="amount" style="color: white;">Amount to Pay (in NGN)</label>
+                    {{ form.amount(class="form-control form-control-lg") }}
+                    {% if form.amount.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.amount.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-info">Pay Now</button>
+            </div>
+        </form>
+    </div>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script>
+        document.getElementById('paymentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const amountInKobo = document.getElementById('{{ form.amount.id }}').value * 100; // Convert NGN to kobo
+            const paystack = PaystackPop.setup({
+                key: 'pk_live_8017ced3f46c94721ee3446267b26043297018ff',
+                email: document.getElementById('{{ form.email.id }}').value,
+                amount: amountInKobo,
+                currency: 'NGN',
+                ref: 'paystack_example_' + Date.now(),
+                callback: function(response) {
+                    // Handle the response after payment
+                    console.log(response);
+                    if (response.status === 'success') {
+                        // Display success message to the user
+                        alert('Payment successful!');
+                        // Redirect to a new URL
+                        const fileIdentifier = '{{ file_identifier }}';
+                        window.location.href = '/success?file_identifier=' + file_identifier;
+                    }
+                }
+            });
+
+            // Open the Paystack payment modal
+            paystack.openIframe();
+        });
+    </script>
+</body>
+</html>
