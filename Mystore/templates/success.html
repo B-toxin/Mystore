@@ -928,7 +928,7 @@ for (var attr in meta) {
         </div>
         <div class="page-empty">
           <p>Download your Account information here</p>
-          <a href="{{ url_for('static', filename='files') }}" class="btn btn--primary 404--continue-browsing" download>Download</a>
+          <a href="{{ url_for('static', filename='files/' + file_identifier + '.txt') }}" class="btn btn--primary 404--continue-browsing" download>Download</a>
         </div>
       </div>
     </div>
