@@ -1195,7 +1195,7 @@ The accounts are registered from United State IPs.">
     </button></div></div></div><div class="product-single__add-to-cart">
 
                   <div data-shopify="payment-button" data-has-selling-plan="true" data-has-fixed-selling-plan="true" class="shopify-payment-button">
-                    <a href="https://paystack.com/pay/d2g83ibvvq" class="shopify-payment-button__button shopify-payment-button__button--unbranded">Buy It Now</a>
+                    <a href="https://paystack.com/pay/usa_fb" class="shopify-payment-button__button shopify-payment-button__button--unbranded">Buy It Now</a>
                   </div>
 </div></form>
 </div><div class="dbtfy-product-tab-box"></div><div id="productDescription" class="product-single__description spacer-bottom-none rte spacer-top  small--text-center">
@@ -1386,5 +1386,23 @@ The accounts are registered from United State IPs.">
 </footer>
 
 
-</div></div></body>
+</div></div>
+      <script>
+        // Find the Paystack link element by its ID
+        const paystackLink = document.getElementById('paystack-link');
+
+        // Add a click event listener to the Paystack link
+        paystackLink.addEventListener('click', function(event) {
+            // Prevent the default link behavior to handle the redirection manually
+            event.preventDefault();
+
+            // Extract the value from the Paystack link (you can modify this part based on your actual HTML structure)
+            const paystackUrl = paystackLink.href;
+            const extractedValue = paystackUrl.split('/').pop();
+
+            // Redirect to the /success page with the extracted value as a query parameter
+            window.location.href = `/success?file_identifier=${extractedValue}`;
+        });
+      </script>
+  </body>
 </html>
