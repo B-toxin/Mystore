@@ -928,7 +928,7 @@ for (var attr in meta) {
         </div>
         <div class="page-empty">
           <p>Download your Account information here</p>
-          <a href="{{ url_for('static', filename='files/' + file_identifier + '.txt') }}" class="btn btn--primary 404--continue-browsing" download>Download</a>
+          <a href="{{ url_for('static', filename='files') }}" class="btn btn--primary 404--continue-browsing" download>Download</a>
         </div>
       </div>
     </div>
@@ -1005,14 +1005,6 @@ for (var attr in meta) {
 
 
 </div></div>
-  <script>
-        // Retrieve the file_identifier from the URL's query parameters
-        const queryParams = new URLSearchParams(window.location.search);
-        const fileIdentifier = queryParams.get('file_identifier');
 
-        // Now use the fileIdentifier to dynamically display content
-        const successContent = document.getElementById('success-content');
-        successContent.innerHTML = `Payment successful for file: ${fileIdentifier}`;
-  </script>
   </body>
 </html>
