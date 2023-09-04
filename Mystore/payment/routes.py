@@ -59,9 +59,11 @@ def create_paystack_transaction(email, amount):
 @payment.route('/success')
 def success():
     status = request.args.get('status')
+    file_identifier = request.args.get('file_identifier')  # Extract file identifier from the URL
     if status == 'success':
         # Handle logic for successful payment
-        return render_template('success.html')
+        return render_template('success.html', file_identifier=file_identifier)
     else:
         # Handle unauthorized access or other cases
         return redirect('/')
+
