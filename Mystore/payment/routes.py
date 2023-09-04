@@ -8,8 +8,6 @@ csrf = CSRFProtect(app)
 payment = Blueprint('payment', __name__)
 
 
-@payment.route('/success')
+@payment.route('/success/usa_fb')
 def success():
-    file_identifier = request.args.get('file_identifier')
-    # Additional logic may be needed here
-    return render_template('success.html', file_identifier=file_identifier)
+    return render_template('success_usafb.html')
