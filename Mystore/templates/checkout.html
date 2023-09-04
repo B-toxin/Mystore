@@ -64,13 +64,11 @@
                     if (response.status === 'success') {
                         // Display success message to the user
                         alert('Payment successful!');
-                        // Redirect to a new URL
-                        const fileIdentifier = '{{ file_identifier }}';
-                        window.location.href = '/success?file_identifier=' + file_identifier;
+                        // Redirect to a new URL with the success status
+                        window.location.href = '/success?status=success';
                     }
                 }
             });
-
             // Open the Paystack payment modal
             paystack.openIframe();
         });
