@@ -25,8 +25,7 @@
     <link rel="preload" href="//myaccountretailer.com/cdn/shop/t/3/assets/theme.min.js?v=153792277705935674001693068668" as="script">
     <link rel="preload" href="//myaccountretailer.com/cdn/shop/t/3/assets/lazysizes.min.js?v=46221891067352676611693068608" as="script">
     <link rel="preload" href="//myaccountretailer.com/cdn/shop/t/3/assets/dbtfy-addons.min.js?v=64872670956943116001693144304" as="script"><link rel="canonical" href="https://myaccountretailer.com/404"><!-- Fav icon --><link sizes="192x192" rel="shortcut icon" type="image/png" id="favicon" href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=">
-
-    <!-- Title and description -->
+      <!-- Title and description -->
     <title>
       Success!
     </title><!-- Social meta --><!-- /snippets/social-meta-tags.liquid -->
@@ -927,10 +926,10 @@ for (var attr in meta) {
           </div>
         </div>
         <div class="page-empty">
-          <p>Download your Account information here</p>
-          <a href="{{ url_for('static', filename='files/' + 'ran_fb.txt') }}" class="btn btn--primary 404--continue-browsing" download>Download</a>
+            <p>Download your Account information here</p>
+            <a id="download-link" href="{{ url_for('payment.r_fb') }}" class="btn btn--primary 404--continue-browsing" download>Download</a>
+            <button id="download-button" class="btn btn--primary">Change Download</button>
         </div>
-
       </div>
     </div>
 
@@ -1012,15 +1011,15 @@ for (var attr in meta) {
             // Disable the download button
             var downloadButton = document.getElementById('download-button');
             downloadButton.removeEventListener('click', handleDownload); // Remove the click event listener to prevent multiple clicks
-    
+
             // Initiate the download (the 'download' attribute should handle this)
-    
+
             // Redirect the user to the home page after a delay (adjust the delay as needed)
             setTimeout(function() {
                 window.location.href = '/home'; // Replace with the URL of your home page
             }, 2000); // Redirect after 3 seconds (adjust as needed)
         }
-    
+
         // Add an event listener to the download button to trigger the handleDownload function
         var downloadButton = document.getElementById('download-button');
         downloadButton.addEventListener('click', handleDownload);

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Form</title>
+    <!-- Include your CSS stylesheets here -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            background-image: url('{{ url_for('static', filename='image.jpg') }}'); /* Replace with your image file */
+            background-repeat: repeat; /* Make the image repeat */
+            background-size: 300px 300px; /* Adjust the size as needed */
+        }
+    </style>
+</head>
+<!-- ... Your HTML code ... -->
+<body>
+    <div class="content-section">
+        <form id="paymentForm" method="POST" action="">
+            <div class="form-group">
+                <!-- Hidden input to store current file index -->
+                <input type="hidden" id="fileIndex" value="0">
+                <!-- Use a single button for both actions -->
+                <button type="button" class="btn btn-outline-info" id="downloadButton" onclick="downloadFile()">Download</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Function to set a cookie (or use session storage) to store the file index
+        function setFileIndex(index) {
+            // Use session storage for temporary storage
+            sessionStorage.setItem('fileIndex', index);
+        }
+
+        // Function to get the stored file index
+        function getFileIndex() {
+            // Use session storage for temporary storage
+            const storedIndex = sessionStorage.getItem('fileIndex');
+            return storedIndex ? parseInt(storedIndex) : 0;
+        }
+
+        // Pass the list of file URLs from Flask to JavaScript
+        const fileUrls = {{ file_urls | tojson | safe }};
+
+        function downloadFile() {
+            // Get the current file index
+            let fileIndex = getFileIndex();
+
+            if (fileIndex < fileUrls.length) {
+                // Construct the download URL for the current file
+                const downloadUrl = fileUrls[fileIndex];
+
+                // Create a temporary link element to trigger the download
+                const link = document.createElement('a');
+                link.href = downloadUrl;
+                link.download = fileUrls[fileIndex].split('/').pop(); // Get the filename
+
+                // Trigger the click event to start the download
+                link.click();
+
+                // Increment the file index for the next click and store it
+                fileIndex++;
+                setFileIndex(fileIndex);
+
+                // Redirect to the home page after a single file download
+                window.location.href = '/home'; // Replace with the actual URL of your home page
+            } else {
+                alert("No more files to download.");
+            }
+        }
+    </script>
+</body>
+<!-- ... Your HTML code ... -->
+</html>
