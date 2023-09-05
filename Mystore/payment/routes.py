@@ -25,7 +25,7 @@ def usa_fb():
 
 
 @payment.route('/success/ran_fb')
-def usa_fb():
+def ran_fb():
     reference_id = request.args.get('reference')
 
     # Check if the reference ID is valid (e.g., in a database)
