@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, render_template, request, redirect
+from flask import Flask, Blueprint, render_template, request, redirect, session
 from flask_wtf import CSRFProtect
 
 app = Flask(__name__)
@@ -14,10 +14,16 @@ def is_valid_reference(reference_id):
 
 @payment.route('/success/usa_fb')
 def usa_fb():
+    # Check if the user has already downloaded the content
+    if session.get('downloaded'):
+        # Redirect them to the home page or display an error message
+        return render_template('home.html')
+    
     reference_id = request.args.get('reference')
 
     # Check if the reference ID is valid (e.g., in a database)
     if is_valid_reference(reference_id):
+        session['downloaded'] = True  # Set the download flag
         return render_template('success/success_usa_fb.html')
     else:
         # Redirect or display an error message for invalid reference IDs
