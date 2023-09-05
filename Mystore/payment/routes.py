@@ -1,8 +1,11 @@
 from flask import Flask, Blueprint, render_template, request, redirect, url_for, session
 from flask_wtf import CSRFProtect
+from flask_session import Session
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'e71121f8359c7c241f56e489f91f32d7'
+app.config['SESSION_TYPE'] = 'filesystem'  # Use filesystem-based session storage
+Session(app)
 csrf = CSRFProtect(app)
 
 payment = Blueprint('payment', __name__)
@@ -12,10 +15,15 @@ def is_valid_reference(reference_id):
     return reference_id is not None
 
 
+# Function to check if the user has already downloaded the content
+def has_downloaded():
+    return session.get('downloaded', False)
+
+
 @payment.route('/success/usa_fb')
 def usa_fb():
     # Check if the user has already downloaded the content
-    if session.get('downloaded'):
+    if has_downloaded():
         # Redirect them to the home page or display an error message
         return render_template('home.html')
 
@@ -45,6 +53,9 @@ def ran_fb():
 def r_fb():
     # List of file names in the "files" folder
     file_names = ['file1.txt', 'file2.txt', 'file3.txt', 'file4.txt', 'file5.txt']  # Add your file names here
+
+    # Set the 'downloaded' flag to False when the user visits the download page
+    session['downloaded'] = False
 
     # Retrieve the current file index from the session
     file_index = session.get('file_index', 0)
