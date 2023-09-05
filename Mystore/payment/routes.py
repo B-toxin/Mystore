@@ -18,7 +18,7 @@ def usa_fb():
     if session.get('downloaded'):
         # Redirect them to the home page or display an error message
         return render_template('home.html')
-    
+
     reference_id = request.args.get('reference')
 
     # Check if the reference ID is valid (e.g., in a database)
@@ -32,11 +32,17 @@ def usa_fb():
 
 @payment.route('/success/ran_fb')
 def ran_fb():
+    # Check if the user has already downloaded the content
+    if session.get('downloaded'):
+        # Redirect them to the home page or display an error message
+        return render_template('home.html')
+
     reference_id = request.args.get('reference')
 
     # Check if the reference ID is valid (e.g., in a database)
     if is_valid_reference(reference_id):
+        session['downloaded'] = True  # Set the download flag
         return render_template('success/success_ran_fb.html')
     else:
         # Redirect or display an error message for invalid reference IDs
-        return redirect('https://paystack.com/pay/usa_fb')
+        return redirect('https://paystack.com/pay/ran_fb')
