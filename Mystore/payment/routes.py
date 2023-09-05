@@ -10,4 +10,4 @@ payment = Blueprint('payment', __name__)
 
 @payment.route('/success/usa_fb')
 def success():
-    return render_template('success_usafb.html')
+    return render_template('success_usa_fb.html')
