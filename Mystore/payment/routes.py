@@ -11,3 +11,8 @@ payment = Blueprint('payment', __name__)
 @payment.route('/success/usa_fb')
 def success():
     return render_template('success_usa_fb.html')
+
+
+@payment.route('/success/ran_fb')
+def success():
+    return render_template('success_ran_fb.html')
