@@ -930,7 +930,7 @@ for (var attr in meta) {
           <p>Download your Account information here</p>
           <a href="{{ url_for('static', filename='files/' + 'ran_fb.txt') }}" class="btn btn--primary 404--continue-browsing" download>Download</a>
         </div>
-        
+
       </div>
     </div>
 
@@ -1007,23 +1007,23 @@ for (var attr in meta) {
 
 </div></div>
     <script>
-    // JavaScript function to handle the download and redirection
-    function handleDownload() {
-        // Disable the download button
+        // JavaScript function to handle the download and redirection
+        function handleDownload() {
+            // Disable the download button
+            var downloadButton = document.getElementById('download-button');
+            downloadButton.removeEventListener('click', handleDownload); // Remove the click event listener to prevent multiple clicks
+    
+            // Initiate the download (the 'download' attribute should handle this)
+    
+            // Redirect the user to the home page after a delay (adjust the delay as needed)
+            setTimeout(function() {
+                window.location.href = '/home'; // Replace with the URL of your home page
+            }, 2000); // Redirect after 3 seconds (adjust as needed)
+        }
+    
+        // Add an event listener to the download button to trigger the handleDownload function
         var downloadButton = document.getElementById('download-button');
-        downloadButton.removeEventListener('click', handleDownload); // Remove the click event listener to prevent multiple clicks
-
-        // Initiate the download (the 'download' attribute should handle this)
-
-        // Redirect the user to the home page after a delay (adjust the delay as needed)
-        setTimeout(function() {
-            window.location.href = '/home'; // Replace with the URL of your home page
-        }, 2000); // Redirect after 3 seconds (adjust as needed)
-    }
-
-    // Add an event listener to the download button to trigger the handleDownload function
-    var downloadButton = document.getElementById('download-button');
-    downloadButton.addEventListener('click', handleDownload);
+        downloadButton.addEventListener('click', handleDownload);
     </script>
   </body>
 </html>
