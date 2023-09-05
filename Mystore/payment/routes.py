@@ -33,7 +33,7 @@ def ran_fb():
 
 def get_available_files():
     # List of file names in the "files" folder
-    file_names = ['file6.txt', 'file7.txt', 'file8.txt', 'file9.txt', 'file10.txt']  # Add your file names here
+    file_names = ['file11.txt', 'file12.txt', 'file13.txt', 'file14.txt', 'file15.txt', 'file16.txt', 'file17.txt']  # Add your file names here
 
     # Retrieve the downloaded files from the session, default to an empty list
     downloaded_files = session.get('downloaded_files', [])
