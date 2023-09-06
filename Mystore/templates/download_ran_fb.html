@@ -25,47 +25,15 @@
     </div>
 
     <script>
-        // Function to set a cookie (or use session storage) to store the file index
-        function setFileIndex(index) {
-            // Use session storage for temporary storage
-            sessionStorage.setItem('fileIndex', index);
-        }
-
-        // Function to get the stored file index
-        function getFileIndex() {
-            // Use session storage for temporary storage
-            const storedIndex = sessionStorage.getItem('fileIndex');
-            return storedIndex ? parseInt(storedIndex) : 0;
-        }
-
-        // Pass the list of file URLs from Flask to JavaScript
-        const fileUrls = {{ file_urls | tojson | safe }};
-
         function downloadFile() {
-            // Get the current file index
-            let fileIndex = getFileIndex();
+            // Get the current file index from the hidden input
+            var fileIndex = parseInt(document.getElementById("fileIndex").value);
 
-            if (fileIndex < fileUrls.length) {
-                // Construct the download URL for the current file
-                const downloadUrl = fileUrls[fileIndex];
+            // Update the file index for the next download
+            document.getElementById("fileIndex").value = fileIndex + 1;
 
-                // Create a temporary link element to trigger the download
-                const link = document.createElement('a');
-                link.href = downloadUrl;
-                link.download = fileUrls[fileIndex].split('/').pop(); // Get the filename
-
-                // Trigger the click event to start the download
-                link.click();
-
-                // Increment the file index for the next click and store it
-                fileIndex++;
-                setFileIndex(fileIndex);
-
-                // Redirect to the home page after a single file download
-                window.location.href = '/home'; // Replace with the actual URL of your home page
-            } else {
-                alert("No more files to download.");
-            }
+            // Redirect to the home page after downloading
+            window.location.href = "{{ url_for('home') }}";
         }
     </script>
 </body>
