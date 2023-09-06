@@ -28,6 +28,6 @@ SQLAlchemy==2.0.20
 temp-email-validator==0.1
 typing_extensions==4.7.1
 urllib3==2.0.4
-validators==0.21.2
+validators==0.20.0
 Werkzeug==2.3.7
 WTForms==3.0.1
