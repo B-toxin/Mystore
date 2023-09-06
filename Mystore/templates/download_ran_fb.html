@@ -6,13 +6,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
         body {
-            background-image: url('{{ url_for('static', filename='image.jpg') }}'); /* Replace with your image file */
-            background-repeat: repeat; /* Make the image repeat */
-            background-size: 300px 300px; /* Adjust the size as needed */
+            background-image: url('{{ url_for('static', filename='image.jpg') }}');
+            background-repeat: repeat;
+            background-size: 300px 300px;
         }
     </style>
 </head>
-<!-- ... Your HTML code ... -->
 <body>
     <div class="content-section">
         <form id="paymentForm" method="POST" action="">
@@ -70,5 +69,4 @@
         }
     </script>
 </body>
-<!-- ... Your HTML code ... -->
 </html>
