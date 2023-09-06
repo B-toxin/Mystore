@@ -86,7 +86,7 @@ def r_fb():
         session.pop('file_index', None)
 
         # Redirect to the home page or any other desired page
-        return redirect(url_for('home'))
+        return redirect(url_for('pages.home'))
 
 
 @payment.route('/success/usa_fb')
