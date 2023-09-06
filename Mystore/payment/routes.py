@@ -1,6 +1,7 @@
 from flask import Flask, Blueprint, render_template, request, redirect, url_for, session
 from flask_wtf import CSRFProtect
 from flask_session import Session
+import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'e71121f8359c7c241f56e489f91f32d7'
@@ -62,6 +63,13 @@ def r_fb():
             downloaded_file = available_files[file_index - 1]
             downloaded_files.append(downloaded_file)
             session['downloaded_files'] = downloaded_files
+
+        # Delete the previously downloaded file
+        if file_index > 1:
+            previous_file = available_files[file_index - 2]
+            file_path = os.path.join('static', 'files', previous_file)
+            if os.path.exists(file_path):
+                os.remove(file_path)
 
     available_files = get_available_files()
 
