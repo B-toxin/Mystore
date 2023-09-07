@@ -8,18 +8,23 @@ products = Blueprint('products', __name__)
 @products.route('/collections/frontpage')
 def facebook():
     return render_template('products/facebook/countries_facebook.html')
-
-
 @products.route('/products/facebook')
 @products.route('/collections/frontpage/products/facebook')
 def usa_fb():
     return render_template('products/facebook/usa_fb.html')
-
-
 @products.route('/collections/frontpage/products/random-country-facebook')
+@products.route('/products/random-country-facebook')
 def ran_cn_facebook():
     return render_template('products/facebook/ran_cn_fb.html')
-
+@products.route('/collections/frontpage/products/copy-of-usa-facebook-with-real-friends')
+def usa_date_facebook():
+    return render_template('products/facebook/usa_dating_fb.html')
+@products.route('/collections/frontpage/products/copy-of-usa-dating-facebook')
+def uk_facebook():
+    return render_template('products/facebook/uk_fb.html')
+@products.route('/collections/frontpage/products/copy-of-uk-country-facebook')
+def cn_facebook():
+    return render_template('products/facebook/canada_fb.html')
 
 # INSTAGRAM
 @products.route('/collections/instagram-account')
