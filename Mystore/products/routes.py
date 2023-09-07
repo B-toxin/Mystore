@@ -62,7 +62,7 @@ def tiktok():
 
 @products.route('/collections/tiktok-account/products/tiktok-account')
 def tik_real():
-    return render_template('products/tiktok/tik_real.html')
+    return render_template('products/tiktok/tik_1000.html')
 
 #TWITTER
 @products.route('/collections/twitter-account')
