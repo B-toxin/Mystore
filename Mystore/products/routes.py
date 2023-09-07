@@ -63,21 +63,23 @@ def snap10k():
 @products.route('/collections/tiktok-account')
 def tiktok():
     return render_template('products/tiktok/tiktok.html')
-
-
 @products.route('/collections/tiktok-account/products/tiktok-account')
-def tik_real():
+def tik_1000():
     return render_template('products/tiktok/tik_1000.html')
+@products.route('/collections/tiktok-account/products/tiktok-account-with-1000-followers')
+def tik_4000():
+    return render_template('products/tiktok/tik_4000.html')
 
 #TWITTER
 @products.route('/collections/twitter-account')
 def twitter():
     return render_template('products/twitter/twitter.html')
-
-
+@products.route('/collections/twitter-account/products/copy-of-twitter-account-without-followers')
+def t_1000():
+    return render_template('products/twitter/twi_1000.html')
 @products.route('/collections/twitter-account/products/twitter-account')
-def t_without():
-    return render_template('products/twitter/t_without.html')
+def t_2016():
+    return render_template('products/twitter/twi_2016_2009.html')
 
 #REDDIT
 @products.route('/collections/reddit-account')
