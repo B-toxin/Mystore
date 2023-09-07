@@ -32,9 +32,9 @@ def index():
 def add_text():
     form = AddTextForm()
     if form.validate_on_submit():
-        text_content = form.text_content.data
+        text_content = form.text_content.data  # Use 'data' instead of 'content'
         if text_content:
-            new_text = Text(data=text_content)  # Use 'data' instead of 'content'
+            new_text = Text(content=text_content)  # Use 'content' instead of 'data'
             db.session.add(new_text)
             db.session.commit()
             return redirect('/ran_fb_db')
