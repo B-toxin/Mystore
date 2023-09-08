@@ -100,7 +100,12 @@ def reddit_karma():
 @products.route('/collections/linkedin-account')
 def linkedin():
     return render_template('products/linkedin/linkedin.html')
-
 @products.route('/collections/linkedin-account/products/linkedin-account-with-100-connections')
 def link_100():
     return render_template('products/linkedin/link_100.html')
+@products.route('/collections/linkedin-account/products/copy-of-linkedin-account-with-100-connections')
+def link_200():
+    return render_template('products/linkedin/link_200.html')
+@products.route('/collections/linkedin-account/products/linkedin-account-with-500-connections')
+def link_500():
+    return render_template('products/linkedin/link_500.html')
