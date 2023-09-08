@@ -12,5 +12,7 @@ class Config:
         'ig_1000f_2018_2016': 'sqlite:///ig_1000f_2018_2016.db',
         'snap_50k': 'sqlite:///snap_50k.db',
         'snap_100k': 'sqlite:///snap_100k.db',
-        'snap_10k': 'sqlite:///snap_10k.db'
+        'snap_10k': 'sqlite:///snap_10k.db',
+        'aged_reddit': 'sqlite:///aged_reddit.db',
+        'reddit_1000k': 'sqlite:///reddit_1000k.db'
     }
