@@ -94,7 +94,7 @@ def aged_reddit():
 
 @products.route('/collections/reddit-account/products/usa-reddit')
 def reddit_karma():
-    return render_template('products/reddit/reddit_karma.html')
+    return render_template('products/reddit/reddit_1000_karma.html')
 
 #LINKEDIN
 @products.route('/collections/linkedin-account')
