@@ -12,6 +12,7 @@ def home():
 
 
 @pages.route('/collections/all')
+@pages.route('/collections/all?page=2')
 def menu():
     return render_template('pages/menu.html')
 
