@@ -73,7 +73,7 @@ def is_valid_reference(reference_id):
     return reference_id is not None
 
 
-@snap_10k.route('/success/snap_100k', methods=['GET', 'POST'])
+@snap_10k.route('/success/snap_10k', methods=['GET', 'POST'])
 def ig():
     reference_id = request.args.get('reference')
     if is_valid_reference(reference_id):
