@@ -20,7 +20,8 @@ def create_app():
         'twi_1000': app.config['SQLALCHEMY_BINDS']['twi_1000'],
         'twi_2016_2009': app.config['SQLALCHEMY_BINDS']['twi_2016_2009'],
         'ig_f_2018_2016': app.config['SQLALCHEMY_BINDS']['ig_f_2018_2016'],
-        'ig_po_2020_2012': app.config['SQLALCHEMY_BINDS']['ig_po_2020_2012']
+        'ig_po_2020_2012': app.config['SQLALCHEMY_BINDS']['ig_po_2020_2012'],
+        'ig_2000f_2018_2016': app.config['SQLALCHEMY_BINDS']['ig_2000f_2018_2016']
     }
 
     from Mystore.usa_fb.routes import usa_fb
@@ -32,7 +33,9 @@ def create_app():
     from Mystore.twi_2016_2009.routes import twi_2016_2009
     from Mystore.ig_f_2018_2016.routes import ig_f_2018_2016
     from Mystore.ig_po_2020_2012.routes import ig_po_2020_2012
+    from Mystore.ig_2000f_2018_2016.routes import ig_2000f_2018_2016
 
+    app.register_blueprint(ig_2000f_2018_2016)
     app.register_blueprint(ig_po_2020_2012)
     app.register_blueprint(ig_f_2018_2016)
     app.register_blueprint(twi_2016_2009)

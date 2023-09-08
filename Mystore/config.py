@@ -7,5 +7,6 @@ class Config:
         'twi_1000': 'sqlite:///twi_1000.db',
         'twi_2016_2009': 'sqlite:///twi_2016_2009.db',
         'ig_f_2018_2016': 'sqlite:///ig_f_2018_2016.db',
-        'ig_po_2020_2012': 'sqlite:///ig_po_2020_2012.db'
+        'ig_po_2020_2012': 'sqlite:///ig_po_2020_2012.db',
+        'ig_2000f_2018_2016': 'sqlite:///ig_2000f_2018_2016.db'
     }
