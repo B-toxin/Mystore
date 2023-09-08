@@ -17,7 +17,8 @@ def create_app():
         'usa_fb': app.config['SQLALCHEMY_BINDS']['usa_fb'],
         'tik_1000': app.config['SQLALCHEMY_BINDS']['tik_1000'],
         'twi_1000': app.config['SQLALCHEMY_BINDS']['twi_1000'],
-        'twi_2016_2009': app.config['SQLALCHEMY_BINDS']['twi_2016_2009']
+        'twi_2016_2009': app.config['SQLALCHEMY_BINDS']['twi_2016_2009'],
+        'ig_f_2018_2016': app.config['SQLALCHEMY_BINDS']['ig_f_2018_2016']
     }
 
     from Mystore.usa_fb.routes import usa_fb
@@ -27,7 +28,9 @@ def create_app():
     from Mystore.tik_1000.routes import tik_1000
     from Mystore.twi_1000.routes import twi_1000
     from Mystore.twi_2016_2009.routes import twi_2016_2009
+    from Mystore.ig_f_2018_2016.routes import ig_f_2018_2016
 
+    app.register_blueprint(ig_f_2018_2016)
     app.register_blueprint(twi_2016_2009)
     app.register_blueprint(twi_1000)
     app.register_blueprint(tik_1000)

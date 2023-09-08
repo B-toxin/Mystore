@@ -30,24 +30,22 @@ def cn_facebook():
 @products.route('/collections/instagram-account')
 def instagram():
     return render_template('products/instagram/instagram_account.html')
-
-
-@products.route('/products/aged-instagram-without-followers')
-@products.route('/collections/instagram-account/products/aged-instagram-without-followers')
+@products.route('/products/copy-of-2018-2016-instagram-without-followers')
+@products.route('/collections/instagram-account/products/copy-of-2018-2016-instagram-without-followers')
 def ig_001():
-    return render_template('products/instagram/aged_ig_wf_2016.html')
-
-
+    return render_template('products/instagram/ig_po_2020_2012.html')
 @products.route('/products/aged-instagram-accounts-with-2000-followers')
 @products.route('/collections/instagram-account/products/aged-instagram-accounts-with-2000-followers')
 def ig_002():
-    return render_template('products/instagram/aged_ig_2000.html')
-
-
+    return render_template('products/instagram/ig_2000f_2018_2016.html')
 @products.route('/products/instagram-accounts-with-1000-followers')
 @products.route('/collections/instagram-account/products/instagram-accounts-with-1000-followers')
 def ig_003():
-    return render_template('products/instagram/aged_ig_1000.html')
+    return render_template('products/instagram/ig_1000f_2018_2016.html')
+@products.route('/products/aged-instagram-without-followers')
+@products.route('/collections/instagram-account/products/aged-instagram-without-followers')
+def ig_004():
+    return render_template('products/instagram/ig_f_2018_2016.html')
 
 #SNAPCHAT
 @products.route('/collections/snapchat-account')
