@@ -53,7 +53,7 @@ def download_text8():
     text_to_download = Text8.query.first()
     if text_to_download:
         # Construct the absolute path to the downloaded file
-        file_path = os.path.join(app.root_path, 'downloaded_text7.txt')
+        file_path = os.path.join(app.root_path, 'downloaded_text8.txt')
 
         # Create a TXT file and provide it for download
         with open(file_path, 'w') as txt_file:
