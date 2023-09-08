@@ -5,6 +5,7 @@ from Mystore.config import Config
 
 db = SQLAlchemy()
 
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
@@ -18,7 +19,8 @@ def create_app():
         'tik_1000': app.config['SQLALCHEMY_BINDS']['tik_1000'],
         'twi_1000': app.config['SQLALCHEMY_BINDS']['twi_1000'],
         'twi_2016_2009': app.config['SQLALCHEMY_BINDS']['twi_2016_2009'],
-        'ig_f_2018_2016': app.config['SQLALCHEMY_BINDS']['ig_f_2018_2016']
+        'ig_f_2018_2016': app.config['SQLALCHEMY_BINDS']['ig_f_2018_2016'],
+        'ig_po_2020_2012': app.config['SQLALCHEMY_BINDS']['ig_po_2020_2012']
     }
 
     from Mystore.usa_fb.routes import usa_fb
@@ -29,7 +31,9 @@ def create_app():
     from Mystore.twi_1000.routes import twi_1000
     from Mystore.twi_2016_2009.routes import twi_2016_2009
     from Mystore.ig_f_2018_2016.routes import ig_f_2018_2016
+    from Mystore.ig_po_2020_2012.routes import ig_po_2020_2012
 
+    app.register_blueprint(ig_po_2020_2012)
     app.register_blueprint(ig_f_2018_2016)
     app.register_blueprint(twi_2016_2009)
     app.register_blueprint(twi_1000)
