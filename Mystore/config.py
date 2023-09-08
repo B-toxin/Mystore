@@ -10,5 +10,7 @@ class Config:
         'ig_po_2020_2012': 'sqlite:///ig_po_2020_2012.db',
         'ig_2000f_2018_2016': 'sqlite:///ig_2000f_2018_2016.db',
         'ig_1000f_2018_2016': 'sqlite:///ig_1000f_2018_2016.db',
-        'snap_50k': 'sqlite:///snap_50k.db'
+        'snap_50k': 'sqlite:///snap_50k.db',
+        'snap_100k': 'sqlite:///snap_100k.db',
+        'snap_10k': 'sqlite:///snap_10k.db'
     }

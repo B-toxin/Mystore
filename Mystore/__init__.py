@@ -23,7 +23,9 @@ def create_app():
         'ig_po_2020_2012': app.config['SQLALCHEMY_BINDS']['ig_po_2020_2012'],
         'ig_2000f_2018_2016': app.config['SQLALCHEMY_BINDS']['ig_2000f_2018_2016'],
         'ig_1000f_2018_2016': app.config['SQLALCHEMY_BINDS']['ig_1000f_2018_2016'],
-        'snap_50k': app.config['SQLALCHEMY_BINDS']['snap_50k']
+        'snap_50k': app.config['SQLALCHEMY_BINDS']['snap_50k'],
+        'snap_100k': app.config['SQLALCHEMY_BINDS']['snap_100k'],
+        'snap_10k': app.config['SQLALCHEMY_BINDS']['snap_10k']
     }
 
     from Mystore.usa_fb.routes import usa_fb
@@ -38,7 +40,11 @@ def create_app():
     from Mystore.ig_2000f_2018_2016.routes import ig_2000f_2018_2016
     from Mystore.ig_1000f_2018_2016.routes import ig_1000f_2018_2016
     from Mystore.snap_50k.routes import snap_50k
+    from Mystore.snap_100k.routes import snap_100k
+    from Mystore.snap_10k.routes import snap_10k
 
+    app.register_blueprint(snap_10k)
+    app.register_blueprint(snap_100k)
     app.register_blueprint(snap_50k)
     app.register_blueprint(ig_1000f_2018_2016)
     app.register_blueprint(ig_2000f_2018_2016)
