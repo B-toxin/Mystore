@@ -51,11 +51,15 @@ def ig_004():
 @products.route('/collections/snapchat-account')
 def snapchat():
     return render_template('products/snapchat/snapchat.html')
-
-
 @products.route('/collections/snapchat-account/products/snapchat-account')
 def snap10k():
     return render_template('products/snapchat/snap_10k.html')
+@products.route('/collections/snapchat-account/products/copy-of-snapchat-account-with-100k-snapscore')
+def snap50k():
+    return render_template('products/snapchat/snap_50k.html')
+@products.route('/collections/snapchat-account/products/snapchat-account-with-100k-snapscore')
+def snap100k():
+    return render_template('products/snapchat/snap_100k.html')
 
 #TIKTOK
 @products.route('/collections/tiktok-account')
