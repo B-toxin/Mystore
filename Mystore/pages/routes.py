@@ -1,4 +1,4 @@
-from flask import Blueprint, Flask, render_template
+from flask import Blueprint, Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -12,14 +12,13 @@ def home():
 
 
 @pages.route('/collections/all')
-@pages.route('/collections/all?page=2')
 def menu():
-    return render_template('pages/menu.html')
+    page_number = request.args.get('page', default=1, type=int)
 
-
-@pages.route('/collections')
-def catalog():
-    return render_template('pages/collections.html')
+    if page_number == 2:
+        return render_template('pages/menu_1.html')
+    else:
+        return render_template('pages/menu.html')
 
 
 @pages.route('/pages/contact')
