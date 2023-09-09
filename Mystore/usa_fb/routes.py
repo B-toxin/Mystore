@@ -79,7 +79,7 @@ def us_fb():
     if is_valid_reference(reference_id, token):
         # Check if the user has already downloaded an item
         if session.get('has_downloaded', False):
-            return redirect('/thank_you_page')  # Redirect to an appropriate page
+            return redirect('/')  # Redirect to an appropriate page
         else:
             # Set the flag in the session to indicate that the user has downloaded an item
             session['has_downloaded'] = True
