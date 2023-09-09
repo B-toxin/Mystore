@@ -27,7 +27,9 @@ def create_app():
         'snap_100k': app.config['SQLALCHEMY_BINDS']['snap_100k'],
         'snap_10k': app.config['SQLALCHEMY_BINDS']['snap_10k'],
         'aged_reddit': app.config['SQLALCHEMY_BINDS']['aged_reddit'],
-        'reddit_1000k': app.config['SQLALCHEMY_BINDS']['reddit_1000k']
+        'reddit_1000k': app.config['SQLALCHEMY_BINDS']['reddit_1000k'],
+        'link_100': app.config['SQLALCHEMY_BINDS']['link_100'],
+        'link_200': app.config['SQLALCHEMY_BINDS']['link_200']
     }
 
     from Mystore.usa_fb.routes import usa_fb
@@ -46,7 +48,11 @@ def create_app():
     from Mystore.snap_10k.routes import snap_10k
     from Mystore.aged_reddit.routes import aged_reddit
     from Mystore.reddit_1000k.routes import reddit_1000k
+    from Mystore.link_100.routes import link_100
+    from Mystore.link_200.routes import link_200
 
+    app.register_blueprint(link_200)
+    app.register_blueprint(link_100)
     app.register_blueprint(reddit_1000k)
     app.register_blueprint(aged_reddit)
     app.register_blueprint(snap_10k)

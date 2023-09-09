@@ -14,5 +14,7 @@ class Config:
         'snap_100k': 'sqlite:///snap_100k.db',
         'snap_10k': 'sqlite:///snap_10k.db',
         'aged_reddit': 'sqlite:///aged_reddit.db',
-        'reddit_1000k': 'sqlite:///reddit_1000k.db'
+        'reddit_1000k': 'sqlite:///reddit_1000k.db',
+        'link_100': 'sqlite:///link_100.db',
+        'link_200': 'sqlite:///link_200.db'
     }
