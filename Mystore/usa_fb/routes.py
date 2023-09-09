@@ -1,4 +1,4 @@
-from flask import Flask, flash, Blueprint, send_file, render_template, request, redirect
+from flask import Flask, flash, Blueprint, send_file,session, render_template, request, redirect
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField
 from wtforms.validators import DataRequired
@@ -67,15 +67,23 @@ def download_text1():
 
 
 # Function to check if the reference ID is valid (e.g., in a database)
-def is_valid_reference(reference_id):
-    return reference_id is not None
+def is_valid_reference(reference_id, token):
+    return reference_id is not None and token is not None
 
 
 @usa_fb.route('/success/usa_fb', methods=['GET', 'POST'])
 def us_fb():
     reference_id = request.args.get('reference')
-    if is_valid_reference(reference_id):
-        form = AddTextForm1()  # Create an instance of your form
-        return render_template('downloads/download_usa_fb.html', form=form)
+    token = request.args.get('token')  # Get the token from the query parameter
+
+    if is_valid_reference(reference_id, token):
+        # Check if the user has already downloaded an item
+        if session.get('has_downloaded', False):
+            return redirect('/thank_you_page')  # Redirect to an appropriate page
+        else:
+            # Set the flag in the session to indicate that the user has downloaded an item
+            session['has_downloaded'] = True
+            form = AddTextForm1()  # Create an instance of your form
+            return render_template('downloads/download_usa_fb.html', form=form)
     else:
         return redirect('https://paystack.com/pay/usa_fb')
