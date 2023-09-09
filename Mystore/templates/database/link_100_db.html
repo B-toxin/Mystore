@@ -6,13 +6,13 @@
     <title>Database</title>
 </head>
 <body>
-    <h1>ig_post_2020_2012</h1>
+    <h1>Linkedin 100</h1>
 
     <!-- Form to add text to the database -->
-    <form method="POST" action="/add_text6">
+    <form method="POST" action="/add_text14">
         {{ form.csrf_token }}
-        <label for="text_content6">Add Text:</label>
-        <textarea id="text_content6" name="text_content6" rows="4" cols="50" required></textarea>
+        <label for="text_content14">Add Text:</label>
+        <textarea id="text_content14" name="text_content14" rows="4" cols="50" required></textarea>
         <br>
         <button type="submit">Submit</button>
     </form>
@@ -30,12 +30,11 @@
     <!-- Button to download the first text from the database -->
     <div class="content-section">
         <div class="form-group">
-            <form method="GET" action="/download_text6" id="download-form">
+            <form method="GET" action="/download_text14" id="download-form">
                 {{ form.csrf_token }}
                 <button type="submit" id="download-button">Download</button>
             </form>
         </div>
     </div>
-
 </body>
 </html>
