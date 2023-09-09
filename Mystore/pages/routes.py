@@ -11,6 +11,11 @@ def home():
     return render_template('pages/home.html')
 
 
+@pages.route('/collections')
+def catalog():
+    return render_template('pages/collections.html')
+
+
 @pages.route('/collections/all')
 def menu():
     page_number = request.args.get('page', default=1, type=int)
