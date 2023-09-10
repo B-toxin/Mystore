@@ -21,11 +21,11 @@
 
     <!-- Display texts stored in the database -->
     <h2>Stored Texts:</h2>
-    <ul>
+    <ol>
         {% for text in texts %}
-            <li>{{ text.data }}</li>
+            <li>{{ text.content }}</li>
         {% endfor %}
-    </ul>
+    </ol>
 
     <!-- Button to download the first text from the database -->
     <form method="GET" action="/download_text1">
