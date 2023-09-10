@@ -1,14 +1,18 @@
 from flask import Flask, flash, Blueprint, send_file, render_template, request, redirect
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField
-from wtforms.validators import DataRequired
+from wtforms import TextAreaField, PasswordField
+from wtforms.validators import DataRequired, InputRequired
 from Mystore import db
 import os
+from flask_wtf.csrf import CSRFProtect
 
 
 app = Flask(__name__)
+csrf = CSRFProtect(app)
 # Define a blueprint for ran_fb-related routes
 usa_fb = Blueprint('usa_fb', __name__)
+
+correct_password = 'b8b7ce3756a3abcd'
 
 
 # Define the Text model
@@ -18,15 +22,32 @@ class Text1(db.Model):
     content = db.Column(db.String(255), nullable=False)
 
 
+class PasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[InputRequired()])
+
+
 class AddTextForm1(FlaskForm):
     text_content1 = TextAreaField('Text Content', validators=[DataRequired()])
 
 
-@usa_fb.route('/usa_fb_db')
+@usa_fb.route('/usa_fb_db', methods=['GET', 'POST'])
 def index1():
-    form = AddTextForm1()
-    texts = Text1.query.all()
-    return render_template('database/usa_fb_db.html', texts=texts, form=form)
+    form = PasswordForm()
+
+    if form.validate_on_submit():
+        password_attempt = form.password.data
+
+        if password_attempt == correct_password:
+            # Password is correct, render the protected page
+            form = AddTextForm1()
+            texts = Text1.query.all()
+            return render_template('database/usa_fb_db.html', texts=texts, form=form)
+        else:
+            # Password is incorrect, show an error message
+            flash("Incorrect password. Please try again.", 'error')
+
+    # If it's a GET request or the form is invalid, show the password prompt
+    return render_template('downloads/download_usa_fb.html', form=form)
 
 
 @usa_fb.route('/add_text1', methods=['POST'])
