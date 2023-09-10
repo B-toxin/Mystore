@@ -16,6 +16,8 @@ class Text15(db.Model):
     __bind_key__ = 'link_200'
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(255), nullable=False)
+    reference_id = db.Column(db.String(255), unique=True)  # New field for reference ID
+    used = db.Column(db.Boolean, default=False)
 
 
 class AddTextForm15(FlaskForm):
@@ -45,13 +47,15 @@ def add_text15():
         flash('Invalid form submission. Please check your input.', 'danger')
 
     # If form validation fails, return to the index page with error messages
-    return redirect('/link_100_db')
+    return redirect('/link_200_db')
 
 
 @link_200.route('/download_text15')
 def download_text15():
     text_to_download = Text15.query.first()
     if text_to_download:
+        text_to_download.used = True
+        db.session.commit()
         # Construct the absolute path to the downloaded file
         file_path = os.path.join(app.root_path, 'downloaded_text15.txt')
 
@@ -70,7 +74,8 @@ def download_text15():
 
 # Function to check if the reference ID is valid (e.g., in a database)
 def is_valid_reference(reference_id):
-    return reference_id is not None
+    text_with_reference = Text15.query.filter_by(reference_id=reference_id).first()
+    return text_with_reference is not None and not text_with_reference.used
 
 
 @link_200.route('/success/link_200', methods=['GET', 'POST'])
@@ -81,3 +86,4 @@ def aged():
         return render_template('downloads/download_link_200.html', form=form)
     else:
         return redirect('https://paystack.com/pay/link_200')
+
