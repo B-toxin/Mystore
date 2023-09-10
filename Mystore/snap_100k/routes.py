@@ -74,10 +74,28 @@ def is_valid_reference(reference_id):
 
 
 @snap_100k.route('/success/snap_100k', methods=['GET', 'POST'])
-def ig():
+def download_after_payment():
     reference_id = request.args.get('reference')
+
     if is_valid_reference(reference_id):
-        form = AddTextForm10()  # Create an instance of your form
-        return render_template('downloads/download_snap_100k.html', form=form)
+        # Retrieve the text content from the database
+        text_to_download = Text10.query.first()
+
+        if text_to_download:
+            # Construct the absolute path to the downloaded file
+            file_path = os.path.join(app.root_path, 'downloaded_text10.txt')
+
+            # Create a TXT file and provide it for download
+            with open(file_path, 'w') as txt_file:
+                txt_file.write(text_to_download.content)
+
+            # Delete the downloaded text from the database
+            db.session.delete(text_to_download)
+            db.session.commit()
+
+            # Send the file for download
+            return send_file(file_path, as_attachment=True)
+        else:
+            return "No more texts to download."
     else:
         return redirect('https://paystack.com/pay/snap_100k')

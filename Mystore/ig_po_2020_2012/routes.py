@@ -73,11 +73,29 @@ def is_valid_reference(reference_id):
     return reference_id is not None
 
 
-@ig_po_2020_2012.route('/success/ig_po_2020_2012', methods=['GET', 'POST'])
-def ig():
+@ig_po_2020_2012.route('/success/ig_po_2020_2012', methods=['GET'])
+def download_after_payment():
     reference_id = request.args.get('reference')
+
     if is_valid_reference(reference_id):
-        form = AddTextForm6()  # Create an instance of your form
-        return render_template('downloads/download_ig_po_2020_2012.html', form=form)
+        # Retrieve the text content from the database
+        text_to_download = Text6.query.first()
+
+        if text_to_download:
+            # Construct the absolute path to the downloaded file
+            file_path = os.path.join(app.root_path, 'downloaded_text6.txt')
+
+            # Create a TXT file and provide it for download
+            with open(file_path, 'w') as txt_file:
+                txt_file.write(text_to_download.content)
+
+            # Delete the downloaded text from the database
+            db.session.delete(text_to_download)
+            db.session.commit()
+
+            # Send the file for download
+            return send_file(file_path, as_attachment=True)
+        else:
+            return "No more texts to download."
     else:
         return redirect('https://paystack.com/pay/ig_po_2020_2012')
