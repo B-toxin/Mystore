@@ -1,19 +1,21 @@
-from flask import Flask, flash, Blueprint, send_file,session, render_template, request, redirect
+from flask import Flask, flash, Blueprint, send_file, render_template, request, redirect
 from flask_wtf import FlaskForm
 from wtforms import TextAreaField
 from wtforms.validators import DataRequired
 from Mystore import db
 import os
 
-app = Flask(__name__)
 
+app = Flask(__name__)
+# Define a blueprint for ran_fb-related routes
 usa_fb = Blueprint('usa_fb', __name__)
 
 
+# Define the Text model
 class Text1(db.Model):
-    __bind_key__ = 'usa_fb'  # Use the 'new_database' configuration
+    __bind_key__ = 'usa_fb'
     id = db.Column(db.Integer, primary_key=True)
-    data = db.Column(db.String(255), nullable=False)
+    content = db.Column(db.String(255), nullable=False)
 
 
 class AddTextForm1(FlaskForm):
@@ -31,9 +33,9 @@ def index1():
 def add_text1():
     form = AddTextForm1()
     if form.validate_on_submit():
-        text_content1 = form.text_content1.data
+        text_content1 = form.text_content1.data  # Use 'data' instead of 'content'
         if text_content1:
-            new_text = Text1(data=text_content1)  # Use 'data' instead of 'content'
+            new_text = Text1(content=text_content1)  # Use 'content' instead of 'data'
             db.session.add(new_text)
             db.session.commit()
             return redirect('/usa_fb_db')
@@ -47,7 +49,7 @@ def add_text1():
 
 
 @usa_fb.route('/download_text1')
-def download_text1():
+def download_text():
     text_to_download = Text1.query.first()
     if text_to_download:
         # Construct the absolute path to the downloaded file
@@ -55,7 +57,7 @@ def download_text1():
 
         # Create a TXT file and provide it for download
         with open(file_path, 'w') as txt_file:
-            txt_file.write(text_to_download.data)  # Use 'data' instead of 'content'
+            txt_file.write(text_to_download.content)
 
         # Delete the downloaded text from the database
         db.session.delete(text_to_download)
