@@ -1,41 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Payment Form</title>
-    <!-- Include your CSS stylesheets here -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <style>
-        body {
-            background-image: url('{{ url_for('static', filename='icon.png') }}');
-            background-repeat: repeat;
-            background-size: 300px 300px;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Prompt</title>
 </head>
 <body>
-    <div class="content-section">
-        <div class="form-group">
-            <form method="GET" action="/download_text7" id="download-form">
-                {{ form.csrf_token }}
-                <button type="submit" id="download-button">Download</button>
-            </form>
-        </div>
+    <h1>Password Prompt</h1>
+    {% if messages %}
+    <div style="color: red;">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
     </div>
-
-    <script>
-        // Add a JavaScript event listener to the download button
-        document.getElementById('download-form').addEventListener('submit', function (e) {
-            // Prevent the default form submission behavior
-            e.preventDefault();
-
-            // Perform the form submission
-            this.submit();
-
-            // Redirect back to the home page after a short delay (e.g., 2 seconds)
-            setTimeout(function () {
-                window.location.href = '/'; // Change '/' to the actual URL of your home page
-            }, 1000); // Adjust the delay as needed (measured in milliseconds)
-        });
-    </script>
+    {% endif %}
+    <form method="post">
+        {{ form.csrf_token }}
+        {{ form.hidden_tag() }}
+        {{ form.password.label }} {{ form.password() }}
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
