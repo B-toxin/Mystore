@@ -9,10 +9,9 @@ from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
 csrf = CSRFProtect(app)
-# Define a blueprint for ran_fb-related routes
-usa_fb = Blueprint('usa_fb', __name__)
-
 correct_password = 'b8b7ce3756a3abcd'
+
+usa_fb = Blueprint('usa_fb', __name__)
 
 
 # Define the Text model

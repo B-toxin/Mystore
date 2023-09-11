@@ -1,12 +1,15 @@
 from flask import Flask, flash, Blueprint, send_file, render_template, request, redirect
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField
-from wtforms.validators import DataRequired
+from wtforms import TextAreaField, PasswordField
+from wtforms.validators import DataRequired, InputRequired
 from Mystore import db
 import os
+from flask_wtf.csrf import CSRFProtect
 
 
 app = Flask(__name__)
+csrf = CSRFProtect(app)
+correct_password = 'b8b7ce3756a3abcd'
 
 twi_2016_2009 = Blueprint('twi_2016_2009', __name__)
 
@@ -18,15 +21,32 @@ class Text4(db.Model):
     content = db.Column(db.String(255), nullable=False)
 
 
+class PasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[InputRequired()])
+
+
 class AddTextForm4(FlaskForm):
     text_content4 = TextAreaField('Text Content', validators=[DataRequired()])
 
 
-@twi_2016_2009.route('/twi_2016_2009_db')
+@twi_2016_2009.route('/twi_2016_2009_db', methods=['GET', 'POST'])
 def index4():
-    form = AddTextForm4()
-    texts = Text4.query.all()
-    return render_template('database/twi_2016_2009_db.html', texts=texts, form=form)
+    form = PasswordForm()
+
+    if form.validate_on_submit():
+        password_attempt = form.password.data
+
+        if password_attempt == correct_password:
+            # Password is correct, render the protected page
+            form = AddTextForm4()
+            texts = Text4.query.all()
+            return render_template('database/twi_2016_2009_db.html', texts=texts, form=form)
+        else:
+            # Password is incorrect, show an error message
+            flash("Incorrect password. Please try again.", 'error')
+
+    # If it's a GET request or the form is invalid, show the password prompt
+    return render_template('downloads/download_twi_2016_2009.html', form=form)
 
 
 @twi_2016_2009.route('/add_text4', methods=['POST'])

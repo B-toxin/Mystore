@@ -1,13 +1,15 @@
 from flask import Flask, flash, Blueprint, send_file, render_template, request, redirect
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField
-from wtforms.validators import DataRequired
+from wtforms import TextAreaField, PasswordField
+from wtforms.validators import DataRequired, InputRequired
 from Mystore import db
 import os
-
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
-# Define a blueprint for ran_fb-related routes
+csrf = CSRFProtect(app)
+correct_password = 'b8b7ce3756a3abcd'
+
 ran_fb = Blueprint('ran_fb', __name__)
 
 
@@ -15,6 +17,10 @@ ran_fb = Blueprint('ran_fb', __name__)
 class Text(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(255), nullable=False)
+
+
+class PasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[InputRequired()])
 
 
 class AddTextForm(FlaskForm):
@@ -28,23 +34,24 @@ def index():
     return render_template('database/ran_fb_db.html', texts=texts, form=form)
 
 
-@ran_fb.route('/add_text', methods=['POST'])
+@ran_fb.route('/add_text', methods=['POST', 'GET'])
 def add_text():
-    form = AddTextForm()
-    if form.validate_on_submit():
-        text_content = form.text_content.data  # Use 'data' instead of 'content'
-        if text_content:
-            new_text = Text(content=text_content)  # Use 'content' instead of 'data'
-            db.session.add(new_text)
-            db.session.commit()
-            return redirect('/ran_fb_db')
-        else:
-            flash('Text content cannot be empty.', 'warning')
-    else:
-        flash('Invalid form submission. Please check your input.', 'danger')
+    form = PasswordForm()
 
-    # If form validation fails, return to the index page with error messages
-    return redirect('/ran_fb_db')
+    if form.validate_on_submit():
+        password_attempt = form.password.data
+
+        if password_attempt == correct_password:
+            # Password is correct, render the protected page
+            form = AddTextForm()
+            texts = Text.query.all()
+            return render_template('database/ran_fb_db.html', texts=texts, form=form)
+        else:
+            # Password is incorrect, show an error message
+            flash("Incorrect password. Please try again.", 'error')
+
+    # If it's a GET request or the form is invalid, show the password prompt
+    return render_template('downloads/download_ran_fb.html', form=form)
 
 
 @ran_fb.route('/download_text')
