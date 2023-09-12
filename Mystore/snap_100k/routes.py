@@ -40,7 +40,7 @@ def index10():
             # Password is correct, render the protected page
             form = AddTextForm10()
             texts = Text10.query.all()
-            return render_template('database/snap_100k.html', texts=texts, form=form)
+            return render_template('database/snap_100k_db.html', texts=texts, form=form)
         else:
             # Password is incorrect, show an error message
             flash("Incorrect password. Please try again.", 'error')
