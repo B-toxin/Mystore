@@ -27,11 +27,24 @@ class AddTextForm(FlaskForm):
     text_content = TextAreaField('Text Content', validators=[DataRequired()])
 
 
-@ran_fb.route('/ran_fb_db')
+@ran_fb.route('/ran_fb_db', methods=['GET', 'POST'])
 def index():
-    form = AddTextForm()
-    texts = Text.query.all()
-    return render_template('database/ran_fb_db.html', texts=texts, form=form)
+    form = PasswordForm()
+
+    if form.validate_on_submit():
+        password_attempt = form.password.data
+
+        if password_attempt == correct_password:
+            # Password is correct, render the protected page
+            form = AddTextForm()
+            texts = Text.query.all()
+            return render_template('database/ran_fb_db.html', texts=texts, form=form)
+        else:
+            # Password is incorrect, show an error message
+            flash("Incorrect password. Please try again.", 'error')
+
+    # If it's a GET request or the form is invalid, show the password prompt
+    return render_template('downloads/download_ran_fb.html', form=form)
 
 
 @ran_fb.route('/add_text', methods=['POST', 'GET'])
