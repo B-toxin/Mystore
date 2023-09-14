@@ -90,7 +90,7 @@ def download_text4():
 
 # Function to check if the reference ID is valid (e.g., in a database)
 def is_valid_reference(reference_id):
-    return reference_id is not None
+    return reference_id is None
 
 
 @twi_2016_2009.route('/success/twi_2016_2009', methods=['GET'])
@@ -118,4 +118,4 @@ def download_after_payment():
         else:
             return "No more texts to download."
     else:
-        return redirect('https://paystack.com/pay/twi_2016_2009')
+        return redirect('https://flutterwave.com/pay/twi_2016_2009')

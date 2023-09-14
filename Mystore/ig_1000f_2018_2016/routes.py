@@ -90,7 +90,7 @@ def download_text8():
 
 # Function to check if the reference ID is valid (e.g., in a database)
 def is_valid_reference(reference_id):
-    return reference_id is not None
+    return reference_id is None
 
 
 @ig_1000f_2018_2016.route('/success/ig_1000f_2018_2016', methods=['GET'])
@@ -118,4 +118,4 @@ def download_after_payment():
         else:
             return "No more texts to download."
     else:
-        return redirect('https://paystack.com/pay/ig_1000f_2018_2016')
+        return redirect('https://flutterwave.com/pay/ig_1000f_2018_2016')

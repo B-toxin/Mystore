@@ -90,7 +90,7 @@ def download_text2():
 
 # Function to check if the reference ID is valid (e.g., in a database)
 def is_valid_reference(reference_id):
-    return reference_id is not None
+    return reference_id is None
 
 
 @tik_1000.route('/success/tik_1000', methods=['GET'])
@@ -118,4 +118,4 @@ def download_after_payment():
         else:
             return "No more texts to download."
     else:
-        return redirect('https://paystack.com/pay/tik_1000')
+        return redirect('https://flutterwave.com/pay/tik_1000')

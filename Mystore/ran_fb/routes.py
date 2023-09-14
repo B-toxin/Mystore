@@ -89,7 +89,7 @@ def download_text():
 
 # Function to check if the reference ID is valid (e.g., in a database)
 def is_valid_reference(reference_id):
-    return reference_id is not None
+    return reference_id is None
 
 
 @ran_fb.route('/success/ran_fb', methods=['GET'])
@@ -117,4 +117,4 @@ def download_after_payment():
         else:
             return "No more texts to download."
     else:
-        return redirect('https://paystack.com/pay/ran_fb')
+        return redirect('https://flutterwave.com/pay/ran_fb')

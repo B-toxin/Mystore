@@ -89,7 +89,7 @@ def download_text13():
 
 # Function to check if the reference ID is valid (e.g., in a database)
 def is_valid_reference(reference_id):
-    return reference_id is not None
+    return reference_id is None
 
 
 @reddit_1000k.route('/success/reddit_1000k', methods=['GET'])
@@ -117,4 +117,4 @@ def download_after_payment():
         else:
             return "No more texts to download."
     else:
-        return redirect('https://paystack.com/pay/reddit_1000k')
+        return redirect('https://flutterwave.com/pay/reddit_1000k')
