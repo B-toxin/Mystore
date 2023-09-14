@@ -118,4 +118,4 @@ def download_after_payment():
         else:
             return "No more texts to download."
     else:
-        return redirect('https://paystack.com/pay/usa_fb')
+        return redirect('https://flutterwave.com/pay/usa_fb')
