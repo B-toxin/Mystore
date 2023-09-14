@@ -90,7 +90,7 @@ def download_text():
 
 # Function to check if the reference ID is valid (e.g., in a database)
 def is_valid_reference(reference_id):
-    return reference_id is not None
+    return reference_id is None
 
 
 @usa_fb.route('/success/usa_fb', methods=['GET'])
