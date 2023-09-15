@@ -117,6 +117,10 @@ def reddit_karma():
 @products.route('/collections/linkedin-account')
 def linkedin():
     return render_template('products/linkedin/linkedin.html')
+@products.route('/collections/linkedin-account/products/linkedin-account')
+@products.route('/collections/all/products/linkedin-account')
+def link():
+    return render_template('products/linkedin/link.html')
 @products.route('/collections/linkedin-account/products/linkedin-account-with-100-connections')
 @products.route('/collections/all/products/linkedin-account-with-100-connections')
 def link_100():
@@ -135,5 +139,6 @@ def link_500():
 def gv():
     return render_template('products/Google Voice/gv.html')
 @products.route('/collections/google-voice/products/google-voice-usa')
+@products.route('/collections/all/products/google-voice-usa')
 def gv_usa():
     return render_template('products/Google Voice/gv_usa.html')
