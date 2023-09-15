@@ -49,22 +49,21 @@ def index():
 
 @ran_fb.route('/add_text', methods=['POST'])
 def add_text():
-    form = PasswordForm()
-
+    form = AddTextForm()
     if form.validate_on_submit():
-        password_attempt = form.password.data
-
-        if password_attempt == correct_password:
-            # Password is correct, render the protected page
-            form = AddTextForm()
-            texts = Text.query.all()
-            return render_template('database/ran_fb_db.html', texts=texts, form=form)
+        text_content = form.text_content.data  # Use 'data' instead of 'content'
+        if text_content:
+            new_text = Text(content=text_content)  # Use 'content' instead of 'data'
+            db.session.add(new_text)
+            db.session.commit()
+            return redirect('/ran_fb_db')
         else:
-            # Password is incorrect, show an error message
-            flash("Incorrect password. Please try again.", 'error')
+            flash('Text content cannot be empty.', 'warning')
+    else:
+        flash('Invalid form submission. Please check your input.', 'danger')
 
-    # If it's a GET request or the form is invalid, show the password prompt
-    return render_template('downloads/download_ran_fb.html', form=form)
+    # If form validation fails, return to the index page with error messages
+    return redirect('/ran_fb_db')
 
 
 @ran_fb.route('/download_text')
