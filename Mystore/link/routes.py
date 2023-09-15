@@ -118,4 +118,4 @@ def download_after_payment():
         else:
             return "No more texts to download."
     else:
-        return redirect('https://flutterwave.com/pay/link')
+        return redirect('https://flutterwave.com/pay/linke')
