@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database</title>
+</head>
+<body>
+    <h1>LinkedIn Account</h1>
+
+    <!-- Form to add text to the database -->
+    <form method="POST" action="/add_text17">
+        {{ form.csrf_token }}
+        <label for="text_content17">Add Text:</label>
+        <textarea id="text_content17" name="text_content17" rows="4" cols="50" required></textarea>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <hr>
+
+    <!-- Display texts stored in the database -->
+    <h2>Stored Texts:</h2>
+    <ol>
+        {% for text in texts %}
+            <li>{{ text.content }}</li>
+        {% endfor %}
+    </ol>
+
+
+    <!-- Button to download the first text from the database -->
+    <div class="content-section">
+        <div class="form-group">
+            <form method="GET" action="/download_text17" id="download-form">
+                {{ form.csrf_token }}
+                <button type="submit" id="download-button">Download</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
