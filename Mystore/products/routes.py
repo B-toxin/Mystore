@@ -68,7 +68,7 @@ def snap10k():
 def snap50k():
     return render_template('products/snapchat/snap_50k.html')
 @products.route('/collections/snapchat-account/products/snapchat-account-with-100k-snapscore')
-@products.route('/collections/snapchat-account/all/snapchat-account-with-100k-snapscore')
+@products.route('/collections/all/products/snapchat-account-with-100k-snapscore')
 def snap100k():
     return render_template('products/snapchat/snap_100k.html')
 
