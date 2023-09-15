@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Prompt</title>
+</head>
+<body>
+    <h1>Password Prompt</h1>
+    {% if messages %}
+    <div style="color: red;">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <form method="post">
+        {{ form.csrf_token }}
+        {{ form.hidden_tag() }}
+        {{ form.password.label }} {{ form.password() }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
