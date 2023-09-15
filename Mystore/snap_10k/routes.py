@@ -93,7 +93,7 @@ def is_valid_reference(reference_id):
     return reference_id is None
 
 
-@snap_10k.route('/success/snap_100k', methods=['GET'])
+@snap_10k.route('/success/snap_10k', methods=['GET'])
 def download_after_payment():
     reference_id = request.args.get('reference')
 
