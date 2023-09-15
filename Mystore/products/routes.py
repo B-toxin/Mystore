@@ -1,6 +1,7 @@
-from flask import Blueprint
-from flask import render_template
+from flask import Flask, Blueprint, render_template, flash
 
+app = Flask(__name__)
+app.secret_key = 'e71121f8359c7c241f56e489f91f32d7'
 
 products = Blueprint('products', __name__)
 
@@ -128,3 +129,11 @@ def link_200():
 @products.route('/collections/all/products/linkedin-account-with-500-connections')
 def link_500():
     return render_template('products/linkedin/link_500.html')
+
+#GOOGLE VOICE
+@products.route('/collections/google-voice')
+def gv():
+    return render_template('products/Google Voice/gv.html')
+@products.route('/collections/google-voice/products/google-voice-usa')
+def gv_usa():
+    return render_template('products/Google Voice/gv_usa.html')
