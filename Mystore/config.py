@@ -16,5 +16,6 @@ class Config:
         'aged_reddit': 'sqlite:///aged_reddit.db',
         'reddit_1000k': 'sqlite:///reddit_1000k.db',
         'link_100': 'sqlite:///link_100.db',
-        'link_200': 'sqlite:///link_200.db'
+        'link_200': 'sqlite:///link_200.db',
+        'gv_usa': 'sqlite:///gv_usa.db'
     }
