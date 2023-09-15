@@ -47,7 +47,7 @@ def index():
     return render_template('downloads/download_ran_fb.html', form=form)
 
 
-@ran_fb.route('/add_text', methods=['POST', 'GET'])
+@ran_fb.route('/add_text', methods=['POST'])
 def add_text():
     form = PasswordForm()
 
